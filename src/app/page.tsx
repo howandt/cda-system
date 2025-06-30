@@ -87,6 +87,69 @@ const TrafiklysKort = () => (
     </div>
   );
 
+  const DialogSkabeloner = () => (
+    <div className="space-y-6">
+      <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+        <h3 className="text-lg font-semibold text-blue-800">Sensoriske Løsninger</h3>
+        <p className="text-sm text-blue-600 mt-1">Rolige klasseværelser med CDA's metoder</p>
+      </div>
+      <div className="grid gap-4">
+        <div className="bg-green-50 p-4 rounded-lg">
+          <h4 className="font-bold text-green-800 mb-2">💚 Miljøtilpasninger</h4>
+          <ul className="text-green-700 text-sm space-y-1">
+            <li>• Dæmp lys 20% for bedre ro</li>
+            <li>• Soft baggrungsmusik</li>
+            <li>• Fjern unødige visuelle stimuli</li>
+          </ul>
+        </div>
+        <div className="bg-blue-50 p-4 rounded-lg">
+          <h4 className="font-bold text-blue-800 mb-2">⏰ Strukturerede pauser</h4>
+          <ul className="text-blue-700 text-sm space-y-1">
+            <li>• Pause hver 15 minutter</li>
+            <li>• Etabler roligt hjørne</li>
+            <li>• Visuel dagsplan på tavlen</li>
+          </ul>
+        </div>
+      </div>
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg text-center">
+        <h4 className="text-lg font-bold text-gray-800 mb-2">🎯 Se alle sensoriske værktøjer</h4>
+        <button className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-semibold">📅 Book Demo</button>
+      </div>
+    </div>
+  );
+
+  const SuccessStories = () => (
+    <div className="space-y-6">
+      <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
+        <h3 className="text-lg font-semibold text-green-800">Hurtige Løsninger med CDA</h3>
+        <p className="text-sm text-green-600 mt-1">Automatiske skabeloner sparer tid</p>
+      </div>
+      <div className="space-y-4">
+        <div className="bg-blue-50 p-4 rounded-lg">
+          <h4 className="font-bold text-blue-800 mb-2">⚡ Øjeblikkelig hjælp</h4>
+          <p className="text-blue-700 text-sm">I stedet for at vente på specialister, får læreren øjeblikkeligt:</p>
+          <ul className="text-blue-700 text-sm mt-2 space-y-1">
+            <li>• Færdige skabeloner til print</li>
+            <li>• Konkrete handlingsplaner</li>
+            <li>• Specialistrådgivning på stedet</li>
+          </ul>
+        </div>
+        <div className="bg-yellow-50 p-4 rounded-lg">
+          <h4 className="font-bold text-yellow-800 mb-2">📊 Dokumenterede resultater</h4>
+          <ul className="text-yellow-700 text-sm space-y-1">
+            <li>• 65% færre konsulent-timer</li>
+            <li>• 90% problemer løst på stedet</li>
+            <li>• Gladere lærere og børn</li>
+          </ul>
+        </div>
+      </div>
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg text-center">
+        <h4 className="text-lg font-bold text-gray-800 mb-2">🎯 Se alle tidsbesparende værktøjer</h4>
+        <button className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-semibold">📅 Book Demo</button>
+      </div>
+    </div>
+  );
+  
   const handleModalOpen = (demo) => {
     switch(demo) {
       case 'konflikt':
