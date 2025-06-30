@@ -432,7 +432,7 @@ const CDASystem = () => {
               <Brain className="w-8 h-8 text-blue-600 mr-3" />
               <div>
                 <h1 className="text-xl font-bold text-gray-900">CDA-System</h1>
-                <p className="text-sm text-gray-600">Inklusionsværktøj til skoler</p>
+                <p className="text-sm text-gray-600 px-2">Inklusionsværktøj til skoler</p>
               </div>
             </div>
             <nav className="hidden md:flex space-x-8">
