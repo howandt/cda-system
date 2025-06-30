@@ -772,6 +772,23 @@ const TrafiklysKort = () => (
       >
         <SkolevægringPlan />
       </Modal>
+          
+<Modal
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        title="Sensoriske Løsninger for Rolige Klasseværelser"
+      >
+        <DialogSkabeloner />
+      </Modal>
+
+      <Modal
+        isOpen={isSuccessOpen}
+        onClose={() => setIsSuccessOpen(false)}
+        title="Hurtige Løsninger og Tidsbesparelse"
+      >
+        <SuccessStories />
+      </Modal>
+          
         </div>
       </footer>
     </div>
