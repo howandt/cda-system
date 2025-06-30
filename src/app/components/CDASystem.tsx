@@ -1,5 +1,3 @@
-"use client"
-
 import React, { useState } from 'react';
 import { Brain, Users, CheckCircle, ArrowRight, Play, School, Shield, FileText, Target, Award, Star, AlertTriangle, Clock, Lightbulb } from 'lucide-react';
 
