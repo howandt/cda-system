@@ -343,6 +343,51 @@ const TrafiklysKort = () => (
             </div>
           </div>
         );
+
+          case 'tid':
+  return (
+    <div className="space-y-4">
+      <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+        <h4 className="font-bold text-purple-900 mb-2">Udfordring:</h4>
+        <p className="text-purple-800">"Jeg har 28 børn og 3 med diagnoser. Der er ikke tid til at lave individuelle planer til alle."</p>
+      </div>
+      
+      <div className="bg-blue-50 p-4 rounded-lg">
+        <h4 className="font-bold text-blue-900 mb-2">CDA's automatiske løsning:</h4>
+        <div className="text-blue-800 text-sm space-y-2">
+          <p><strong>På 30 sekunder genererer CDA:</strong></p>
+          <ul className="list-disc list-inside space-y-1">
+            <li>Individuel handlingsplan baseret på diagnose</li>
+            <li>Færdige skabeloner til print</li>
+            <li>Forældrekommunikation</li>
+            <li>Evalueringsskema</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div className="bg-green-50 p-4 rounded-lg">
+        <h4 className="font-bold text-green-900 mb-2">Tidsbesparelse dokumenteret:</h4>
+        <div className="grid md:grid-cols-2 gap-4 text-sm">
+          <div>
+            <strong className="text-green-900">Før CDA:</strong>
+            <ul className="text-green-800 list-disc list-inside mt-1">
+              <li>2-3 timer per barn</li>
+              <li>Vente på specialister</li>
+              <li>Lave alt fra bunden</li>
+            </ul>
+          </div>
+          <div>
+            <strong className="text-green-900">Med CDA:</strong>
+            <ul className="text-green-800 list-disc list-inside mt-1">
+              <li>30 sekunder per barn</li>
+              <li>Øjeblikkelig eksperthjælp</li>
+              <li>Færdige skabeloner</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );      
       
       default:
         return (
