@@ -86,6 +86,23 @@ const TrafiklysKort = () => (
       </div>
     </div>
   );
+
+  const handleModalOpen = (demo) => {
+    switch(demo) {
+      case 'konflikt':
+        setIsKonfliktOpen(true);
+        break;
+      case 'ro':
+        setIsDialogOpen(true);
+        break;
+      case 'skolevægring':
+        setIsSkolevægringOpen(true);
+        break;
+      case 'tid':
+        setIsSuccessOpen(true);
+        break;
+    }
+  };
   
   const teacherChallenges = [
     {
@@ -378,7 +395,7 @@ const TrafiklysKort = () => (
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">{challenge.problem}</h4>
                     <p className="text-gray-600 mb-4">{challenge.solution}</p>
                    <button 
-  onClick={() => setIsKonfliktOpen(true)}
+  onClick={() => handleModalOpen(challenge.demo)}
   className="flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors"
 >
   Se løsning <ArrowRight className="w-4 h-4 ml-1" />
