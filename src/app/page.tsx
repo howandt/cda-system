@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-<<<<<<< HEAD
 import { 
   Brain, Users, CheckCircle, ArrowRight, Play, School, Shield, 
   FileText, Target, Award, Star, AlertTriangle, Clock, Lightbulb, 
@@ -11,6 +10,7 @@ import {
 
 const CDASystem = () => {
   const [activeDemo, setActiveDemo] = useState('konflikt');
+  const [isContactOpen, setIsContactOpen] = useState(false);
   const [counters, setCounters] = useState({
     testers: 0,
     testCases: 0,
@@ -21,175 +21,6 @@ const CDASystem = () => {
   const [isAutoPlay, setIsAutoPlay] = useState(true);
 
   const testimonials = [
-=======
-import { Brain, Users, CheckCircle, ArrowRight, Play, School, Shield, FileText, Target, Award, Star, AlertTriangle, Clock, Lightbulb, X } from 'lucide-react';
-
-const CDASystem = () => {
-  const [activeDemo, setActiveDemo] = useState('konflikt');
-const [isKonfliktOpen, setIsKonfliktOpen] = useState(false);
-const [isSkolevægringOpen, setIsSkolevægringOpen] = useState(false);
-const [isDialogOpen, setIsDialogOpen] = useState(false);
-const [isSuccessOpen, setIsSuccessOpen] = useState(false);
-
-  const Modal = ({ isOpen, onClose, title, children }) => {
-    if (!isOpen) return null;
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
-        <div className="bg-white rounded-lg max-w-2xl w-full my-8 flex flex-col max-h-[calc(100vh-4rem)]">
-          <div className="flex justify-between items-center p-6 border-b">
-            <h2 className="text-2xl font-bold text-gray-800">{title}</h2>
-            <button onClick={onClose} className="text-gray-500 hover:text-gray-700 transition-colors">
-              <X size={24} />
-            </button>
-          </div>
-          <div className="p-6 overflow-y-auto flex-1">{children}</div>
-        </div>
-      </div>
-    );
-  };
-  
-const TrafiklysKort = () => (
-    <div className="space-y-6">
-      <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
-        <h3 className="text-lg font-semibold text-blue-800">Trafiklys-Kort – Konfliktløsning</h3>
-        <p className="text-sm text-blue-600 mt-1">Se Victors situation løst med CDA's metode</p>
-      </div>
-      <div className="bg-white border-2 border-gray-200 rounded-lg p-6">
-        <div className="space-y-4">
-          <div className="flex items-start space-x-4 p-4 bg-green-50 rounded-lg">
-            <div className="text-4xl">🟢</div>
-            <div><h4 className="font-bold text-green-800">Grøn - Jeg har det godt</h4><p className="text-green-600">Giv opgaver og ros</p></div>
-          </div>
-          <div className="flex items-start space-x-4 p-4 bg-yellow-50 rounded-lg">
-            <div className="text-4xl">🟡</div>
-            <div><h4 className="font-bold text-yellow-800">Gul - Jeg er stresset</h4><p className="text-yellow-600">Hjælp med pause og ro</p></div>
-          </div>
-          <div className="flex items-start space-x-4 p-4 bg-red-50 rounded-lg">
-            <div className="text-4xl">🔴</div>
-            <div><h4 className="font-bold text-red-800">Rød - Jeg er overvældet</h4><p className="text-red-600">Giv ro og hjælp væk fra situation</p></div>
-          </div>
-        </div>
-      </div>
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg text-center">
-        <h4 className="text-lg font-bold text-gray-800 mb-2">🎯 Se alle 50+ skabeloner</h4>
-        <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold">📅 Book Demo</button>
-      </div>
-    </div>
-  );
-
-  const SkolevægringPlan = () => (
-    <div className="space-y-6">
-      <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-6">
-        <h3 className="text-lg font-semibold text-orange-800">Trinvis Plan mod Skolevægring</h3>
-        <p className="text-sm text-orange-600 mt-1">Se hvordan Sofie kom tilbage til skolen</p>
-      </div>
-      <div className="space-y-4">
-        <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
-          <h4 className="font-bold text-green-800 mb-3">🏁 Trin 1: Skab tryghed hjemme</h4>
-          <ul className="space-y-1 text-green-700 text-sm">
-            <li>• Fasthold daglige rutiner</li>
-            <li>• Kontakt med skolen gennem log</li>
-            <li>• Identificer triggers og bekymringer</li>
-          </ul>
-        </div>
-        <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
-          <h4 className="font-bold text-blue-800 mb-3">🚶 Trin 2: Gradvis eksponering</h4>
-          <ul className="space-y-1 text-blue-700 text-sm">
-            <li>• Kør forbi skolen</li>
-            <li>• Besøg legeplads i weekend</li>
-            <li>• Møde med lærer i trygge rammer</li>
-          </ul>
-        </div>
-      </div>
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg text-center">
-        <h4 className="text-lg font-bold text-gray-800 mb-2">🎯 Se den komplette 4-trins plan</h4>
-        <button className="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 font-semibold">📅 Book Demo</button>
-      </div>
-    </div>
-  );
-
-  const DialogSkabeloner = () => (
-    <div className="space-y-6">
-      <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
-        <h3 className="text-lg font-semibold text-blue-800">Sensoriske Løsninger</h3>
-        <p className="text-sm text-blue-600 mt-1">Rolige klasseværelser med CDA's metoder</p>
-      </div>
-      <div className="grid gap-4">
-        <div className="bg-green-50 p-4 rounded-lg">
-          <h4 className="font-bold text-green-800 mb-2">💚 Miljøtilpasninger</h4>
-          <ul className="text-green-700 text-sm space-y-1">
-            <li>• Dæmp lys 20% for bedre ro</li>
-            <li>• Soft baggrungsmusik</li>
-            <li>• Fjern unødige visuelle stimuli</li>
-          </ul>
-        </div>
-        <div className="bg-blue-50 p-4 rounded-lg">
-          <h4 className="font-bold text-blue-800 mb-2">⏰ Strukturerede pauser</h4>
-          <ul className="text-blue-700 text-sm space-y-1">
-            <li>• Pause hver 15 minutter</li>
-            <li>• Etabler roligt hjørne</li>
-            <li>• Visuel dagsplan på tavlen</li>
-          </ul>
-        </div>
-      </div>
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg text-center">
-        <h4 className="text-lg font-bold text-gray-800 mb-2">🎯 Se alle sensoriske værktøjer</h4>
-        <button className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 font-semibold">📅 Book Demo</button>
-      </div>
-    </div>
-  );
-
-  const SuccessStories = () => (
-    <div className="space-y-6">
-      <div className="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
-        <h3 className="text-lg font-semibold text-green-800">Hurtige Løsninger med CDA</h3>
-        <p className="text-sm text-green-600 mt-1">Automatiske skabeloner sparer tid</p>
-      </div>
-      <div className="space-y-4">
-        <div className="bg-blue-50 p-4 rounded-lg">
-          <h4 className="font-bold text-blue-800 mb-2">⚡ Øjeblikkelig hjælp</h4>
-          <p className="text-blue-700 text-sm">I stedet for at vente på specialister, får læreren øjeblikkeligt:</p>
-          <ul className="text-blue-700 text-sm mt-2 space-y-1">
-            <li>• Færdige skabeloner til print</li>
-            <li>• Konkrete handlingsplaner</li>
-            <li>• Specialistrådgivning på stedet</li>
-          </ul>
-        </div>
-        <div className="bg-yellow-50 p-4 rounded-lg">
-          <h4 className="font-bold text-yellow-800 mb-2">📊 Dokumenterede resultater</h4>
-          <ul className="text-yellow-700 text-sm space-y-1">
-            <li>• 65% færre konsulent-timer</li>
-            <li>• 90% problemer løst på stedet</li>
-            <li>• Gladere lærere og børn</li>
-          </ul>
-        </div>
-      </div>
-      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg text-center">
-        <h4 className="text-lg font-bold text-gray-800 mb-2">🎯 Se alle tidsbesparende værktøjer</h4>
-        <button className="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 font-semibold">📅 Book Demo</button>
-      </div>
-    </div>
-  );
-  
-  const handleModalOpen = (demo) => {
-    switch(demo) {
-      case 'konflikt':
-        setIsKonfliktOpen(true);
-        break;
-      case 'ro':
-        setIsDialogOpen(true);
-        break;
-      case 'skolevægring':
-        setIsSkolevægringOpen(true);
-        break;
-      case 'tid':
-        setIsSuccessOpen(true);
-        break;
-    }
-  };
-  
-  const teacherChallenges = [
->>>>>>> b56baba84602b2e84937224e4822c03e88fabf13
     {
       name: "Marie A.",
       role: "Specialpædagog, Test-bruger",
@@ -255,6 +86,263 @@ const TrafiklysKort = () => (
     return () => clearInterval(timer);
   }, [isAutoPlay, testimonials.length]);
 
+  // Contact Modal Component
+  const ContactModal = ({ isOpen, onClose }) => {
+    const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      phone: '',
+      organization: '',
+      role: '',
+      interest: '',
+      message: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const handleInputChange = (field, value) => {
+      setFormData(prev => ({ ...prev, [field]: value }));
+    };
+
+    const handleSubmit = async () => {
+      setIsSubmitting(true);
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      
+      setTimeout(() => {
+        setIsSuccess(false);
+        setFormData({
+          name: '', email: '', phone: '', organization: '', role: '',
+          interest: '', message: ''
+        });
+        onClose();
+      }, 4000);
+    };
+
+    if (!isOpen) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 p-4 overflow-y-auto">
+        <div className="bg-white rounded-xl max-w-2xl w-full my-8">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900">Kontakt CD AI Systems</h2>
+              <p className="text-gray-600">Vi kontakter dig hurtigst muligt</p>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <X className="h-6 w-6 text-gray-500" />
+            </button>
+          </div>
+
+          <div className="p-6">
+            {isSuccess ? (
+              <div className="text-center py-8">
+                <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">Tak for din henvendelse!</h3>
+                <p className="text-gray-600 mb-6">
+                  Vi har modtaget dine oplysninger og kontakter dig hurtigst muligt.
+                </p>
+                
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                  <h4 className="text-blue-800 font-semibold mb-3">📞 Eller kontakt os direkte:</h4>
+                  <div className="space-y-2">
+                    <p className="text-blue-700 flex items-center justify-center">
+                      <Mail className="h-4 w-4 mr-2" />
+                      <a href="mailto:kontakt@cdaisystems.com" className="hover:underline font-medium">
+                        kontakt@cdaisystems.com
+                      </a>
+                    </p>
+                    <p className="text-blue-700 flex items-center justify-center">
+                      <Phone className="h-4 w-4 mr-2" />
+                      <a href="tel:+4526823121" className="hover:underline font-medium">
+                        26 82 31 21
+                      </a>
+                    </p>
+                  </div>
+                  <p className="text-blue-600 text-sm mt-3">
+                    Ring eller skriv for hurtigste svar!
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <User className="inline h-4 w-4 mr-1" />
+                      Fulde navn *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Dit fulde navn"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <Mail className="inline h-4 w-4 mr-1" />
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="din@email.dk"
+                    />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <Phone className="inline h-4 w-4 mr-1" />
+                      Telefon
+                    </label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="26 82 31 21"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <Building className="inline h-4 w-4 mr-1" />
+                      Skole/Organisation
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.organization}
+                      onChange={(e) => handleInputChange('organization', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Skole/Institution"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Din rolle
+                  </label>
+                  <select
+                    value={formData.role}
+                    onChange={(e) => handleInputChange('role', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">Vælg din rolle</option>
+                    <option value="lærer">Lærer</option>
+                    <option value="pædagog">Pædagog</option>
+                    <option value="specialpædagog">Specialpædagog</option>
+                    <option value="skoleleder">Skoleleder</option>
+                    <option value="teamleder">Teamleder</option>
+                    <option value="psykolog">Psykolog</option>
+                    <option value="andet">Andet</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                    Hvad interesserer dig mest?
+                  </label>
+                  <div className="space-y-2">
+                    {[
+                      'Konflikthåndtering og eskalering',
+                      'Sensoriske udfordringer i klasselokalet', 
+                      'Skolevægring og fravær',
+                      'Tidsoptimering og workflow',
+                      'Generel CDA-implementering',
+                      'Andet'
+                    ].map((area) => (
+                      <label key={area} className="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                        <input
+                          type="radio"
+                          name="interest"
+                          value={area}
+                          checked={formData.interest === area}
+                          onChange={(e) => handleInputChange('interest', e.target.value)}
+                          className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
+                        />
+                        <span className="ml-3 text-gray-700">{area}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <MessageSquare className="inline h-4 w-4 mr-1" />
+                    Besked
+                  </label>
+                  <textarea
+                    value={formData.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
+                    rows={4}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="Beskriv gerne jeres situation eller hvad I gerne vil vide mere om..."
+                  />
+                </div>
+
+                <div className="pt-4">
+                  <button
+                    onClick={handleSubmit}
+                    disabled={!formData.name.trim() || !formData.email.trim() || isSubmitting}
+                    className="w-full px-8 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors flex items-center justify-center text-lg font-semibold"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                        Sender...
+                      </>
+                    ) : (
+                      'Send henvendelse'
+                    )}
+                  </button>
+                  <p className="text-center text-sm text-gray-500 mt-2">
+                    Vi kontakter dig inden for 24 timer
+                  </p>
+                </div>
+
+                <div className="border-t border-gray-200 pt-6">
+                  <div className="bg-gray-50 rounded-lg p-4">
+                    <h4 className="text-gray-800 font-semibold mb-2 text-center">
+                      🚀 Vil du i kontakt hurtigere?
+                    </h4>
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                      <a 
+                        href="mailto:kontakt@cdaisystems.com"
+                        className="flex items-center text-blue-600 hover:text-blue-700 font-medium"
+                      >
+                        <Mail className="h-4 w-4 mr-2" />
+                        kontakt@cdaisystems.com
+                      </a>
+                      <a 
+                        href="tel:+4526823121"
+                        className="flex items-center text-blue-600 hover:text-blue-700 font-medium"
+                      >
+                        <Phone className="h-4 w-4 mr-2" />
+                        26 82 31 21
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const demoTypes = [
     {
       id: 'konflikt',
@@ -286,7 +374,6 @@ const TrafiklysKort = () => (
     }
   ];
 
-<<<<<<< HEAD
   const getDemoContent = (type) => {
     const content = {
       konflikt: {
@@ -333,188 +420,6 @@ const TrafiklysKort = () => (
       }
     };
     return content[type] || content.konflikt;
-=======
-  const renderDemo = () => {
-            switch(activeDemo) {
-      case 'konflikt':
-        return (
-          <div className="space-y-4">
-            <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
-              <h4 className="font-bold text-red-900 mb-2">Akut situation - Case SP1: Victor, 5 år:</h4>
-              <p className="text-red-800">"Victor holder sig for ørerne og skriger under samling. Han løber væk når der bliver for støjende."</p>
-            </div>
-            
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-bold text-blue-900 mb-2">CDA matcher fra 60+ cases og aktiverer specialister:</h4>
-              <div className="space-y-2 text-blue-800 text-sm">
-                <p><strong>AI-Ergoterapeut Maja:</strong> "Auditiv overbelastning. Reducer stimuli øjeblikkeligt."</p>
-                <p><strong>AI-Speciallærer Jonas:</strong> "Brug Lydkompasset og pausekassen fra skabelonbiblioteket."</p>
-                <p><strong>Valida verificerer:</strong> Strategi understøttet af 3 specialister og international forskning.</p>
-              </div>
-            </div>
-            
-            <div className="bg-green-50 p-4 rounded-lg">
-              <h4 className="font-bold text-green-900 mb-2">Øjeblikkelige materialer fra skabelonbibliotek:</h4>
-              <div className="grid md:grid-cols-2 gap-4 text-sm">
-                <div>
-                  <strong>Til nu:</strong>
-                  <ul className="text-green-800 list-disc list-inside mt-1">
-                    <li>Lydkompasset (visuel støjguide)</li>
-                    <li>Min Pausekasse (sensorisk værktøj)</li>
-                    <li>Overgangskort med billeder</li>
-                  </ul>
-                </div>
-                <div>
-                  <strong>Til fremtiden:</strong>
-                  <ul className="text-green-800 list-disc list-inside mt-1">
-                    <li>PBL-projekt: Sensory Nature Journal</li>
-                    <li>Trinvis plan for samlinger</li>
-                    <li>Forældrekommunikation pakke</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      
-      case 'ro':
-        return (
-          <div className="space-y-4">
-            <div className="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
-              <h4 className="font-bold text-yellow-900 mb-2">Udfordring:</h4>
-              <p className="text-yellow-800">"Klassen er konstant urolig. Børnene kan ikke koncentrere sig, og jeg bruger al min tid på at få ro."</p>
-            </div>
-            
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-bold text-blue-900 mb-2">CDA's analyse og løsning:</h4>
-              <div className="text-blue-800 text-sm space-y-2">
-                <p><strong>Årsag identificeret:</strong> Sensorisk overbelastning + manglende struktur</p>
-                <p><strong>Plan:</strong> 3-trins sensorisk ro-strategi</p>
-              </div>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="bg-green-50 p-4 rounded-lg">
-                <h5 className="font-semibold text-green-900 mb-2">Trin 1: Miljø</h5>
-                <ul className="text-green-800 text-xs space-y-1">
-                  <li>• Dæmp lys 20%</li>
-                  <li>• Soft musik i baggrund</li>
-                  <li>• Ryd unødige visuelle stimuli</li>
-                </ul>
-              </div>
-              <div className="bg-green-50 p-4 rounded-lg">
-                <h5 className="font-semibold text-green-900 mb-2">Trin 2: Struktur</h5>
-                <ul className="text-green-800 text-xs space-y-1">
-                  <li>• Pause hver 15 min</li>
-                  <li>• Roligt hjørne etableres</li>
-                  <li>• Visuel dagsplan på tavlen</li>
-                </ul>
-              </div>
-              <div className="bg-green-50 p-4 rounded-lg">
-                <h5 className="font-semibold text-green-900 mb-2">Trin 3: Værktøjer</h5>
-                <ul className="text-green-800 text-xs space-y-1">
-                  <li>• Fidget-tools til 3 børn</li>
-                  <li>• Støjdæmpende høreværn</li>
-                  <li>• Bevægelseskort til alle</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        );
-      
-      case 'skolevægring':
-        return (
-          <div className="space-y-4">
-            <div className="bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
-              <h4 className="font-bold text-red-900 mb-2">Situation:</h4>
-              <p className="text-red-800">"Sofie, 8 år, har ikke været i skole i 3 uger. Forældrene er desperate, og hun får angst ved tanken om skolen."</p>
-            </div>
-            
-            <div className="bg-blue-50 p-4 rounded-lg">
-              <h4 className="font-bold text-blue-900 mb-2">CDA's trinvise plan:</h4>
-              <div className="grid md:grid-cols-2 gap-4 text-sm">
-                <div>
-                  <strong className="text-blue-900">Uge 1 - Genkendt tryghed:</strong>
-                  <ul className="text-blue-800 list-disc list-inside mt-1">
-                    <li>Dag 1-2: Kør forbi skolen</li>
-                    <li>Dag 3-4: Parkér og se på skolegård</li>
-                    <li>Dag 5: Gå til hovedindgang</li>
-                  </ul>
-                </div>
-                <div>
-                  <strong className="text-blue-900">Uge 2 - Lille kontakt:</strong>
-                  <ul className="text-blue-800 list-disc list-inside mt-1">
-                    <li>15 min i bibliotek</li>
-                    <li>Hente noget fra lærerens bord</li>
-                    <li>Spise frokost i mælkekøkken</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-green-50 p-4 rounded-lg">
-              <h4 className="font-bold text-green-900 mb-2">Daglige materialer genereres automatisk:</h4>
-              <div className="text-green-800 text-sm">
-                <p>• Social historie for Sofie • Bekræftelseskort til forældre • Progressions-skema • Trygheds-plan for lærer</p>
-              </div>
-            </div>
-          </div>
-        );
-
-          case 'tid':
-  return (
-    <div className="space-y-4">
-      <div className="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
-        <h4 className="font-bold text-purple-900 mb-2">Udfordring:</h4>
-        <p className="text-purple-800">"Jeg har 28 børn og 3 med diagnoser. Der er ikke tid til at lave individuelle planer til alle."</p>
-      </div>
-      
-      <div className="bg-blue-50 p-4 rounded-lg">
-        <h4 className="font-bold text-blue-900 mb-2">CDA's automatiske løsning:</h4>
-        <div className="text-blue-800 text-sm space-y-2">
-          <p><strong>På 30 sekunder genererer CDA:</strong></p>
-          <ul className="list-disc list-inside space-y-1">
-            <li>Individuel handlingsplan baseret på diagnose</li>
-            <li>Færdige skabeloner til print</li>
-            <li>Forældrekommunikation</li>
-            <li>Evalueringsskema</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div className="bg-green-50 p-4 rounded-lg">
-        <h4 className="font-bold text-green-900 mb-2">Tidsbesparelse dokumenteret:</h4>
-        <div className="grid md:grid-cols-2 gap-4 text-sm">
-          <div>
-            <strong className="text-green-900">Før CDA:</strong>
-            <ul className="text-green-800 list-disc list-inside mt-1">
-              <li>2-3 timer per barn</li>
-              <li>Vente på specialister</li>
-              <li>Lave alt fra bunden</li>
-            </ul>
-          </div>
-          <div>
-            <strong className="text-green-900">Med CDA:</strong>
-            <ul className="text-green-800 list-disc list-inside mt-1">
-              <li>30 sekunder per barn</li>
-              <li>Øjeblikkelig eksperthjælp</li>
-              <li>Færdige skabeloner</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  );      
-      
-      default:
-        return (
-          <div className="bg-white rounded-lg p-6 border border-gray-200">
-            <h3 className="text-xl font-semibold mb-4 text-blue-900">Vælg en situation ovenfor</h3>
-            <p className="text-gray-600">Se hvordan CDA løser konkrete problemer i klasseværelset</p>
-          </div>
-        );
-    }
->>>>>>> b56baba84602b2e84937224e4822c03e88fabf13
   };
 
   return (
@@ -536,7 +441,10 @@ const TrafiklysKort = () => (
               <a href="#why" className="text-gray-700 hover:text-blue-600">Hvorfor CDA</a>
               <a href="#demo" className="text-gray-700 hover:text-blue-600">Demo</a>
             </nav>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+            <button 
+              onClick={() => setIsContactOpen(true)}
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+            >
               Kontakt os
             </button>
           </div>
@@ -563,11 +471,17 @@ const TrafiklysKort = () => (
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <button className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 flex items-center justify-center">
+            <button 
+              onClick={() => setIsContactOpen(true)}
+              className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 flex items-center justify-center"
+            >
               <Play className="w-5 h-5 mr-2" />
               Se CDA løse konflikter
             </button>
-            <button className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg text-lg font-medium hover:bg-gray-50">
+            <button 
+              onClick={() => setIsContactOpen(true)}
+              className="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg text-lg font-medium hover:bg-gray-50"
+            >
               Book demo til jeres skole
             </button>
           </div>
@@ -743,8 +657,11 @@ const TrafiklysKort = () => (
                   </div>
 
                   <div className="mt-6 text-center">
-                    <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
-                      Se fuld demo af denne løsning
+                    <button 
+                      onClick={() => setIsContactOpen(true)}
+                      className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
+                    >
+                      Kontakt os for fuld demo
                     </button>
                   </div>
                 </div>
@@ -924,7 +841,10 @@ const TrafiklysKort = () => (
           <p className="text-xl text-gray-600 mb-8">
             CDA-systemet lanceres snart. Kontakt os for at høre mere om pilotprojektet og komme på ventelisten
           </p>
-          <button className="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-colors transform hover:scale-105 shadow-lg">
+          <button 
+            onClick={() => setIsContactOpen(true)}
+            className="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-colors transform hover:scale-105 shadow-lg"
+          >
             📞 Kontakt os for early access
           </button>
         </div>
@@ -980,10 +900,14 @@ const TrafiklysKort = () => (
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
             <p>&copy; 2024 CD AI Systems. Alle rettigheder forbeholdes.</p>
           </div>
-          
-          
         </div>
       </footer>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={isContactOpen} 
+        onClose={() => setIsContactOpen(false)} 
+      />
     </div>
   );
 };
