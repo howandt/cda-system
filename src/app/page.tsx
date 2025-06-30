@@ -1,11 +1,92 @@
 "use client"
 
 import React, { useState } from 'react';
-import { Brain, Users, CheckCircle, ArrowRight, Play, School, Shield, FileText, Target, Award, Star, AlertTriangle, Clock, Lightbulb } from 'lucide-react';
+import { Brain, Users, CheckCircle, ArrowRight, Play, School, Shield, FileText, Target, Award, Star, AlertTriangle, Clock, Lightbulb, X } from 'lucide-react';
 
 const CDASystem = () => {
   const [activeDemo, setActiveDemo] = useState('konflikt');
+const [isKonfliktOpen, setIsKonfliktOpen] = useState(false);
+const [isSkolevægringOpen, setIsSkolevægringOpen] = useState(false);
+const [isDialogOpen, setIsDialogOpen] = useState(false);
+const [isSuccessOpen, setIsSuccessOpen] = useState(false);
 
+  const Modal = ({ isOpen, onClose, title, children }) => {
+    if (!isOpen) return null;
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 overflow-y-auto">
+        <div className="bg-white rounded-lg max-w-2xl w-full my-8 flex flex-col max-h-[calc(100vh-4rem)]">
+          <div className="flex justify-between items-center p-6 border-b">
+            <h2 className="text-2xl font-bold text-gray-800">{title}</h2>
+            <button onClick={onClose} className="text-gray-500 hover:text-gray-700 transition-colors">
+              <X size={24} />
+            </button>
+          </div>
+          <div className="p-6 overflow-y-auto flex-1">{children}</div>
+        </div>
+      </div>
+    );
+  };
+  
+const TrafiklysKort = () => (
+    <div className="space-y-6">
+      <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+        <h3 className="text-lg font-semibold text-blue-800">Trafiklys-Kort – Konfliktløsning</h3>
+        <p className="text-sm text-blue-600 mt-1">Se Victors situation løst med CDA's metode</p>
+      </div>
+      <div className="bg-white border-2 border-gray-200 rounded-lg p-6">
+        <div className="space-y-4">
+          <div className="flex items-start space-x-4 p-4 bg-green-50 rounded-lg">
+            <div className="text-4xl">🟢</div>
+            <div><h4 className="font-bold text-green-800">Grøn - Jeg har det godt</h4><p className="text-green-600">Giv opgaver og ros</p></div>
+          </div>
+          <div className="flex items-start space-x-4 p-4 bg-yellow-50 rounded-lg">
+            <div className="text-4xl">🟡</div>
+            <div><h4 className="font-bold text-yellow-800">Gul - Jeg er stresset</h4><p className="text-yellow-600">Hjælp med pause og ro</p></div>
+          </div>
+          <div className="flex items-start space-x-4 p-4 bg-red-50 rounded-lg">
+            <div className="text-4xl">🔴</div>
+            <div><h4 className="font-bold text-red-800">Rød - Jeg er overvældet</h4><p className="text-red-600">Giv ro og hjælp væk fra situation</p></div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg text-center">
+        <h4 className="text-lg font-bold text-gray-800 mb-2">🎯 Se alle 50+ skabeloner</h4>
+        <button className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 font-semibold">📅 Book Demo</button>
+      </div>
+    </div>
+  );
+
+  const SkolevægringPlan = () => (
+    <div className="space-y-6">
+      <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-6">
+        <h3 className="text-lg font-semibold text-orange-800">Trinvis Plan mod Skolevægring</h3>
+        <p className="text-sm text-orange-600 mt-1">Se hvordan Sofie kom tilbage til skolen</p>
+      </div>
+      <div className="space-y-4">
+        <div className="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+          <h4 className="font-bold text-green-800 mb-3">🏁 Trin 1: Skab tryghed hjemme</h4>
+          <ul className="space-y-1 text-green-700 text-sm">
+            <li>• Fasthold daglige rutiner</li>
+            <li>• Kontakt med skolen gennem log</li>
+            <li>• Identificer triggers og bekymringer</li>
+          </ul>
+        </div>
+        <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+          <h4 className="font-bold text-blue-800 mb-3">🚶 Trin 2: Gradvis eksponering</h4>
+          <ul className="space-y-1 text-blue-700 text-sm">
+            <li>• Kør forbi skolen</li>
+            <li>• Besøg legeplads i weekend</li>
+            <li>• Møde med lærer i trygge rammer</li>
+          </ul>
+        </div>
+      </div>
+      <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg text-center">
+        <h4 className="text-lg font-bold text-gray-800 mb-2">🎯 Se den komplette 4-trins plan</h4>
+        <button className="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 font-semibold">📅 Book Demo</button>
+      </div>
+    </div>
+  );
+  
   const teacherChallenges = [
     {
       icon: <AlertTriangle className="w-6 h-6" />,
@@ -296,9 +377,13 @@ const CDASystem = () => {
                   <div className="flex-1">
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">{challenge.problem}</h4>
                     <p className="text-gray-600 mb-4">{challenge.solution}</p>
-                    <div className="flex items-center text-blue-600 font-medium">
-                      Se løsning <ArrowRight className="w-4 h-4 ml-1" />
-                    </div>
+                   <button 
+  onClick={() => setIsKonfliktOpen(true)}
+  className="flex items-center text-blue-600 font-medium hover:text-blue-800 transition-colors"
+>
+  Se løsning <ArrowRight className="w-4 h-4 ml-1" />
+                     
+</button>
                   </div>
                 </div>
               </div>
@@ -590,6 +675,23 @@ const CDASystem = () => {
               <p>Del af CDA-økosystemet • <a href="#" className="text-blue-400 hover:text-blue-300">CDT Fagbog</a> • <a href="#" className="text-blue-400 hover:text-blue-300">Ann AI-ven</a></p>
             </div>
           </div>
+          
+          {/* Modaler */}
+      <Modal
+        isOpen={isKonfliktOpen}
+        onClose={() => setIsKonfliktOpen(false)}
+        title="Konfliktløsning med Trafiklys-Kort"
+      >
+        <TrafiklysKort />
+      </Modal>
+
+      <Modal
+        isOpen={isSkolevægringOpen}
+        onClose={() => setIsSkolevægringOpen(false)}
+        title="Trinvis Plan mod Skolevægring"
+      >
+        <SkolevægringPlan />
+      </Modal>
         </div>
       </footer>
     </div>
