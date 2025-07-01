@@ -449,7 +449,6 @@ const CDASystem = () => {
           </div>
         </div>
       </header>
-
       {/* Hero */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
@@ -486,7 +485,6 @@ const CDASystem = () => {
           </div>
         </div>
       </section>
-
       {/* Live Statistics Counter */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -544,7 +542,6 @@ const CDASystem = () => {
           </div>
         </div>
       </section>
-
       {/* Teacher Challenges */}
       <section id="challenges" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -669,7 +666,6 @@ const CDASystem = () => {
           </div>
         </div>
       </section>
-
       {/* Testimonial Carousel */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -707,8 +703,7 @@ const CDASystem = () => {
                       </div>
                     </div>
                   </div>
-                </div>
-                
+                </div> 
                 {/* Navigation */}
                 <button
                   onClick={() => setCurrentTestimonial(prev => 
@@ -745,7 +740,6 @@ const CDASystem = () => {
           </div>
         </div>
       </section>
-
       {/* Why CDA Works - The Inside Story */}
       <section id="why" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -830,7 +824,6 @@ const CDASystem = () => {
           </div>
         </div>
       </section>
-
       {/* CTA */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
@@ -848,7 +841,6 @@ const CDASystem = () => {
           </button>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -901,7 +893,6 @@ const CDASystem = () => {
           </div>
         </div>
       </footer>
-
       {/* Contact Modal */}
       <ContactModal 
         isOpen={isContactOpen} 
