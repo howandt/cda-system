@@ -46,7 +46,6 @@ const CDASystem = () => {
       rating: 5
     }
   ];
-
   // Counter animation
   React.useEffect(() => {
     const targets = { testers: 34, testCases: 87, satisfaction: 100, readiness: 95 };
