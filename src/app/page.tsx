@@ -141,7 +141,7 @@ const translations: Record<Language, Translation> = {
         'Belønningssystem motiverer til at komme i skole',
         'Hurtig hjælp = dobbelt hjælp = færre omkostninger'
       ],
-      estimate: 'ROI estimat: 200-300% baseret på reducerede omkostninger første år',
+      estimate: 'ROI estimat: 100-200% baseret på reducerede omkostninger første år',
       quote: '"En investering der betaler sig tilbage på både trivsel OG bundlinje"'
     },
     testimonials: {
@@ -250,7 +250,7 @@ const translations: Record<Language, Translation> = {
         'Reward system motivates coming to school',
         'Quick help = double help = fewer costs'
       ],
-      estimate: 'ROI estimate: 200-300% based on reduced costs in first year',
+      estimate: 'ROI estimate: 100-200% based on reduced costs in first year',
       quote: '"An investment that pays for itself in both wellbeing AND bottom line"'
     },
     testimonials: {
@@ -841,10 +841,23 @@ ${language === 'da' ? 'Jeg vil gerne høre mere om CDA systemet og book et info-
                 </h3>
                 <p className="text-gray-600 mb-6">
                   {language === 'da' 
-                    ? 'Din email-program skulle være åbnet med din anmodning. Hvis ikke, kan du kontakte os direkte:'
-                    : 'Your email program should have opened with your request. If not, you can contact us directly:'
+                    ? 'Din email-program skulle være åbnet med din anmodning. Hvis ikke, kan du kontakte os direkte. Gratis demo uden forpligtelser.'
+                    : 'Your email program should have opened with your request. If not, you can contact us directly. Free demo with no obligations.'
                   }
                 </p>
+                
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                  <p className="text-sm text-yellow-800">
+                    <strong>
+                      {language === 'da' ? 'Vigtigt:' : 'Important:'}
+                    </strong>
+                    {' '}
+                    {language === 'da' 
+                      ? 'CDA kan ikke lave diagnoser eller medicinere, men henviser altid til specialist når nødvendigt.'
+                      : 'CDA cannot diagnose or prescribe medication, but always refers to specialists when necessary.'
+                    }
+                  </p>
+                </div>
                 
                 <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 border border-indigo-200">
                   <h4 className="font-bold text-lg text-gray-900 mb-4">CD AI Systems</h4>
