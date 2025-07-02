@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown, ChevronUp, Globe, MessageSquare, BookOpen, Users, Star, ArrowRight, Languages, Phone, Mail, Send, CheckCircle } from 'lucide-react'
+import { ChevronDown, ChevronUp, Globe, MessageSquare, BookOpen, Users, Star, ArrowRight, Languages, Phone, Mail, Send, CheckCircle, Menu, X } from 'lucide-react'
 
 type Language = 'da' | 'en'
 type ExpandedSection = 'demo1' | 'demo2' | 'demo3' | 'demo4' | null
@@ -285,6 +285,7 @@ export default function Page() {
   const [expandedSection, setExpandedSection] = useState<ExpandedSection>(null)
   const [showContactForm, setShowContactForm] = useState(false)
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [showMobileMenu, setShowMobileMenu] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -301,6 +302,16 @@ export default function Page() {
 
   const switchLanguage = (lang: Language) => {
     setLanguage(lang)
+  }
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -333,6 +344,110 @@ ${language === 'da' ? 'Jeg vil gerne høre mere om CDA systemet og book et info-
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      {/* Sticky Navigation */}
+      <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-b border-gray-200/50 z-40 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="font-bold text-xl text-indigo-600">CDA</div>
+            
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-8">
+              <button 
+                onClick={() => scrollToSection('features')}
+                className="text-gray-700 hover:text-indigo-600 transition-colors font-medium"
+              >
+                {language === 'da' ? 'Features' : 'Features'}
+              </button>
+              <button 
+                onClick={() => scrollToSection('unique-features')}
+                className="text-gray-700 hover:text-indigo-600 transition-colors font-medium"
+              >
+                {language === 'da' ? 'Unikt' : 'Unique'}
+              </button>
+              <button 
+                onClick={() => scrollToSection('demos')}
+                className="text-gray-700 hover:text-indigo-600 transition-colors font-medium"
+              >
+                Demos
+              </button>
+              <button 
+                onClick={() => scrollToSection('testimonials')}
+                className="text-gray-700 hover:text-indigo-600 transition-colors font-medium"
+              >
+                {language === 'da' ? 'Anbefalinger' : 'Testimonials'}
+              </button>
+              <button 
+                onClick={() => setShowContactForm(true)}
+                className="bg-indigo-600 text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition-colors font-medium"
+              >
+                {language === 'da' ? 'Kontakt' : 'Contact'}
+              </button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setShowMobileMenu(!showMobileMenu)}
+              className="md:hidden p-2 text-gray-700 hover:text-indigo-600"
+            >
+              {showMobileMenu ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {showMobileMenu && (
+            <div className="md:hidden py-4 border-t border-gray-200/50">
+              <div className="flex flex-col space-y-3">
+                <button 
+                  onClick={() => {
+                    scrollToSection('features')
+                    setShowMobileMenu(false)
+                  }}
+                  className="text-left text-gray-700 hover:text-indigo-600 transition-colors font-medium py-2"
+                >
+                  {language === 'da' ? 'Features' : 'Features'}
+                </button>
+                <button 
+                  onClick={() => {
+                    scrollToSection('unique-features')
+                    setShowMobileMenu(false)
+                  }}
+                  className="text-left text-gray-700 hover:text-indigo-600 transition-colors font-medium py-2"
+                >
+                  {language === 'da' ? 'Unikt' : 'Unique'}
+                </button>
+                <button 
+                  onClick={() => {
+                    scrollToSection('demos')
+                    setShowMobileMenu(false)
+                  }}
+                  className="text-left text-gray-700 hover:text-indigo-600 transition-colors font-medium py-2"
+                >
+                  Demos
+                </button>
+                <button 
+                  onClick={() => {
+                    scrollToSection('testimonials')
+                    setShowMobileMenu(false)
+                  }}
+                  className="text-left text-gray-700 hover:text-indigo-600 transition-colors font-medium py-2"
+                >
+                  {language === 'da' ? 'Anbefalinger' : 'Testimonials'}
+                </button>
+                <button 
+                  onClick={() => {
+                    setShowContactForm(true)
+                    setShowMobileMenu(false)
+                  }}
+                  className="text-left bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors font-medium"
+                >
+                  {language === 'da' ? 'Kontakt' : 'Contact'}
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
       {/* Language Switcher */}
       <div className="fixed top-4 right-4 z-50">
         <div className="bg-white/90 backdrop-blur-sm rounded-full p-1 shadow-lg border">
@@ -363,7 +478,7 @@ ${language === 'da' ? 'Jeg vil gerne høre mere om CDA systemet og book et info-
       </div>
 
       {/* Hero Section */}
-      <div className="relative overflow-hidden">
+      <div id="hero" className="relative overflow-hidden pt-16">
         <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 to-purple-600/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center">
@@ -389,7 +504,7 @@ ${language === 'da' ? 'Jeg vil gerne høre mere om CDA systemet og book et info-
       </div>
 
       {/* Features Section */}
-      <div className="py-16 bg-white/50 backdrop-blur-sm">
+      <div id="features" className="py-16 bg-white/50 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             {t.features.title}
@@ -410,7 +525,7 @@ ${language === 'da' ? 'Jeg vil gerne høre mere om CDA systemet og book et info-
       </div>
 
       {/* Unique CDA Features Section */}
-      <div className="py-16 bg-gradient-to-br from-purple-600 to-indigo-600">
+      <div id="unique-features" className="py-16 bg-gradient-to-br from-purple-600 to-indigo-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">
@@ -579,7 +694,7 @@ ${language === 'da' ? 'Jeg vil gerne høre mere om CDA systemet og book et info-
       </div>
 
       {/* Demo Section */}
-      <div className="py-16 bg-gradient-to-br from-gray-50 to-indigo-50">
+      <div id="demos" className="py-16 bg-gradient-to-br from-gray-50 to-indigo-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             {t.demos.title}
@@ -661,7 +776,7 @@ ${language === 'da' ? 'Jeg vil gerne høre mere om CDA systemet og book et info-
       </div>
 
       {/* Testimonials */}
-      <div className="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
+      <div id="testimonials" className="py-16 bg-gradient-to-br from-indigo-50 to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             {t.testimonials.title}
