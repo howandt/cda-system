@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ChevronDown, ChevronUp, Globe, MessageSquare, BookOpen, Users, Star, ArrowRight, Languages } from 'lucide-react'
+import { ChevronDown, ChevronUp, Globe, MessageSquare, BookOpen, Users, Star, ArrowRight, Languages, Phone, Mail, Send, CheckCircle } from 'lucide-react'
 
 type Language = 'da' | 'en'
 type ExpandedSection = 'demo1' | 'demo2' | 'demo3' | 'demo4' | null
@@ -283,6 +283,15 @@ const translations: Record<Language, Translation> = {
 export default function Page() {
   const [language, setLanguage] = useState<Language>('da')
   const [expandedSection, setExpandedSection] = useState<ExpandedSection>(null)
+  const [showContactForm, setShowContactForm] = useState(false)
+  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    school: '',
+    role: ''
+  })
   
   const t = translations[language]
 
@@ -292,6 +301,34 @@ export default function Page() {
 
   const switchLanguage = (lang: Language) => {
     setLanguage(lang)
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    // Create mailto link with form data
+    const subject = language === 'da' ? 'Anmodning om CDA Info-møde' : 'Request for CDA Info Meeting'
+    const body = `
+${language === 'da' ? 'Navn' : 'Name'}: ${formData.name}
+${language === 'da' ? 'Telefon' : 'Phone'}: ${formData.phone}
+Email: ${formData.email}
+${language === 'da' ? 'Skole/Organisation' : 'School/Organization'}: ${formData.school}
+${language === 'da' ? 'Rolle' : 'Role'}: ${formData.role}
+
+${language === 'da' ? 'Jeg vil gerne høre mere om CDA systemet og book et info-møde.' : 'I would like to learn more about the CDA system and book an info meeting.'}
+    `.trim()
+
+    const mailtoLink = `mailto:kontakt@cdaisystems.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    window.location.href = mailtoLink
+    
+    setFormSubmitted(true)
   }
 
   return (
@@ -341,7 +378,10 @@ export default function Page() {
             <p className="text-lg text-indigo-600 font-medium mb-8">
               {t.hero.builtHours}
             </p>
-            <button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all shadow-lg">
+            <button 
+              onClick={() => setShowContactForm(true)}
+              className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all shadow-lg"
+            >
               {t.hero.cta}
             </button>
           </div>
@@ -656,11 +696,185 @@ export default function Page() {
           <p className="text-xl text-white/90 mb-8 leading-relaxed">
             {t.contact.description}
           </p>
-          <button className="bg-white text-indigo-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transform hover:scale-105 transition-all shadow-lg">
+          <button 
+            onClick={() => setShowContactForm(true)}
+            className="bg-white text-indigo-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-50 transform hover:scale-105 transition-all shadow-lg"
+          >
             {t.contact.cta}
           </button>
         </div>
       </div>
+
+      {/* Contact Form Modal */}
+      {showContactForm && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            {!formSubmitted ? (
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900">
+                    {language === 'da' ? 'Book Gratis Info-møde' : 'Book Free Info Meeting'}
+                  </h3>
+                  <button 
+                    onClick={() => setShowContactForm(false)}
+                    className="text-gray-400 hover:text-gray-600 text-2xl font-bold"
+                  >
+                    ×
+                  </button>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {language === 'da' ? 'Navn *' : 'Name *'}
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      placeholder={language === 'da' ? 'Dit fulde navn' : 'Your full name'}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {language === 'da' ? 'Telefon *' : 'Phone *'}
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      required
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      placeholder={language === 'da' ? '+45 12 34 56 78' : '+45 12 34 56 78'}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      placeholder="din@email.dk"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {language === 'da' ? 'Skole/Organisation *' : 'School/Organization *'}
+                    </label>
+                    <input
+                      type="text"
+                      name="school"
+                      required
+                      value={formData.school}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                      placeholder={language === 'da' ? 'Skolens/organisationens navn' : 'School/organization name'}
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {language === 'da' ? 'Din rolle *' : 'Your role *'}
+                    </label>
+                    <select
+                      name="role"
+                      required
+                      value={formData.role}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    >
+                      <option value="">
+                        {language === 'da' ? 'Vælg din rolle' : 'Select your role'}
+                      </option>
+                      <option value={language === 'da' ? 'Lærer' : 'Teacher'}>
+                        {language === 'da' ? 'Lærer' : 'Teacher'}
+                      </option>
+                      <option value={language === 'da' ? 'Skoleleder' : 'Principal'}>
+                        {language === 'da' ? 'Skoleleder' : 'Principal'}
+                      </option>
+                      <option value={language === 'da' ? 'Specialpædagog' : 'Special Educator'}>
+                        {language === 'da' ? 'Specialpædagog' : 'Special Educator'}
+                      </option>
+                      <option value={language === 'da' ? 'Forælder' : 'Parent'}>
+                        {language === 'da' ? 'Forælder' : 'Parent'}
+                      </option>
+                      <option value={language === 'da' ? 'IT-ansvarlig' : 'IT Manager'}>
+                        {language === 'da' ? 'IT-ansvarlig' : 'IT Manager'}
+                      </option>
+                      <option value={language === 'da' ? 'Kommunal medarbejder' : 'Municipal Employee'}>
+                        {language === 'da' ? 'Kommunal medarbejder' : 'Municipal Employee'}
+                      </option>
+                      <option value={language === 'da' ? 'Andet' : 'Other'}>
+                        {language === 'da' ? 'Andet' : 'Other'}
+                      </option>
+                    </select>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 px-6 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all flex items-center justify-center gap-2"
+                  >
+                    <Send className="w-5 h-5" />
+                    {language === 'da' ? 'Send anmodning' : 'Send request'}
+                  </button>
+                </form>
+              </div>
+            ) : (
+              <div className="p-6 text-center">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  {language === 'da' ? 'Tak for din interesse!' : 'Thank you for your interest!'}
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  {language === 'da' 
+                    ? 'Din email-program skulle være åbnet med din anmodning. Hvis ikke, kan du kontakte os direkte:'
+                    : 'Your email program should have opened with your request. If not, you can contact us directly:'
+                  }
+                </p>
+                
+                <div className="bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg p-6 border border-indigo-200">
+                  <h4 className="font-bold text-lg text-gray-900 mb-4">CD AI Systems</h4>
+                  <div className="space-y-3 text-left">
+                    <div className="flex items-center gap-3">
+                      <Phone className="w-5 h-5 text-indigo-600" />
+                      <span className="text-gray-700">+45 26823121</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Mail className="w-5 h-5 text-indigo-600" />
+                      <span className="text-gray-700">kontakt@cdaisystems.com</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => {
+                    setShowContactForm(false)
+                    setFormSubmitted(false)
+                    setFormData({ name: '', phone: '', email: '', school: '', role: '' })
+                  }}
+                  className="mt-6 bg-gray-100 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-200 transition-all"
+                >
+                  {language === 'da' ? 'Luk' : 'Close'}
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   )
 }
